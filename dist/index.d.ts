@@ -1,1 +1,1 @@
-export { MUIRating } from './lib/MUIRating';
+export * from './lib';

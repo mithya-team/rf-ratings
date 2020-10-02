@@ -5,9 +5,9 @@ Object.defineProperty(exports, '__esModule', { value: true });
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
 var React = _interopDefault(require('react'));
+var reactForms = require('react-forms');
 var lab = require('@material-ui/lab');
 var core = require('@material-ui/core');
-var reactForms = require('react-forms');
 var _ = _interopDefault(require('lodash'));
 
 /*! *****************************************************************************
@@ -77,6 +77,8 @@ var MUIRating = function (props) {
             React.createElement(lab.Rating, __assign({}, config))),
         " ");
 };
+reactForms.attachField('rating', React.createElement(MUIRating, null));
+
 reactForms.attachField('rating', React.createElement(MUIRating, null));
 
 exports.MUIRating = MUIRating;

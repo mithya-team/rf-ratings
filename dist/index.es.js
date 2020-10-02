@@ -1,7 +1,7 @@
 import React from 'react';
+import { attachField } from 'react-forms';
 import { Rating } from '@material-ui/lab';
 import { Box, Typography } from '@material-ui/core';
-import { attachField } from 'react-forms';
 import _ from 'lodash';
 
 /*! *****************************************************************************
@@ -71,6 +71,8 @@ var MUIRating = function (props) {
             React.createElement(Rating, __assign({}, config))),
         " ");
 };
+attachField('rating', React.createElement(MUIRating, null));
+
 attachField('rating', React.createElement(MUIRating, null));
 
 export { MUIRating };
