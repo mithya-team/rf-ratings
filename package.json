@@ -21,9 +21,7 @@
     "formik": "^2.1.1",
     "lodash": "^4.17.15",
     "@material-ui/lab": "^4.0.0-alpha.40",
-    "axios": "^0.19.2",
-    "moment": "^2.24.0",
-    "react-forms": "https://github.com/mithyalabs/ml-react-forms"
+    "react-forms": "https://github.com/mithyalabs/react-forms"
   },
   "devDependencies": {
     "@material-ui/core": "^4.9.0",
@@ -31,7 +29,6 @@
     "@types/lodash": "^4.14.149",
     "@types/react": "^16.9.17",
     "@types/react-dom": "^16.9.4",
-    "@types/react-places-autocomplete": "^7.2.6",
     "@types/react-test-renderer": "^16.9.1",
     "@material-ui/lab": "^4.0.0-alpha.40",
     "formik": "^2.1.1",
@@ -39,7 +36,6 @@
     "lodash": "^4.17.15",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
-    "react-places-autocomplete": "^7.2.1",
     "react-scripts-ts": "^3.1.0",
     "react-test-renderer": "^16.12.0",
     "rollup": "^1.27.14",
@@ -48,10 +44,7 @@
     "rollup-plugin-peer-deps-external": "^2.2.0",
     "rollup-plugin-typescript2": "^0.25.3",
     "ts-jest": "^24.2.0",
-    "typescript": "^3.7.4",
-    "moment": "^2.24.0"
+    "typescript": "^3.7.4"
   },
-  "dependencies": {
-    "react-forms": "git+https://github.com/mithyalabs/ml-react-forms.git"
-  }
+  "dependencies": { }
 }
