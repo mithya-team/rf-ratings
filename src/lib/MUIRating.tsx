@@ -1,22 +1,22 @@
 import React from 'react';
-import { IconContainerProps, Rating, RatingProps } from '@material-ui/lab'
+import { IconContainerProps, Rating, RatingProps as MaterialRatingProps } from '@material-ui/lab'
 import { Box, Typography } from '@material-ui/core';
 import { attachField, IFieldProps } from 'react-forms'
 import { FormikValues } from 'formik';
 import _ from 'lodash';
 
-export interface IMUIRating extends RatingProps {
+export interface MUIRatingProps extends MaterialRatingProps {
 	icons?: JSX.Element[]
 	labels?: string[]
 	description?: string
 }
 
-export interface IProps extends IFieldProps {
-	fieldProps?: IMUIRating
+export interface RatingProps extends IFieldProps {
+	fieldProps?: MUIRatingProps
 }
 
-export const MUIRating: React.FC<IProps> = (props: IProps) => {
-	const { fieldProps = {} as IMUIRating, formikProps = {} as FormikValues } = props
+export const MUIRating: React.FC<RatingProps> = (props: RatingProps) => {
+	const { fieldProps = {} as MUIRatingProps, formikProps = {} as FormikValues } = props
 	const { icons, defaultValue, labels, description = '', } = fieldProps
 	const getIconContainer = (IconProps: IconContainerProps) => {
 		const { value, ...others } = IconProps

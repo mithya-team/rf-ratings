@@ -1,12 +1,12 @@
 import React from 'react';
-import { RatingProps } from '@material-ui/lab';
+import { RatingProps as MaterialRatingProps } from '@material-ui/lab';
 import { IFieldProps } from 'react-forms';
-export interface IMUIRating extends RatingProps {
+export interface MUIRatingProps extends MaterialRatingProps {
     icons?: JSX.Element[];
     labels?: string[];
     description?: string;
 }
-export interface IProps extends IFieldProps {
-    fieldProps?: IMUIRating;
+export interface RatingProps extends IFieldProps {
+    fieldProps?: MUIRatingProps;
 }
-export declare const MUIRating: React.FC<IProps>;
+export declare const MUIRating: React.FC<RatingProps>;
