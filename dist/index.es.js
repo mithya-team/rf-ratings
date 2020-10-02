@@ -71,7 +71,6 @@ var MUIRating = function (props) {
             React.createElement(Rating, __assign({}, config))),
         " ");
 };
-attachField('rating', React.createElement(MUIRating, null));
 
 attachField('rating', React.createElement(MUIRating, null));
 

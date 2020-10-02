@@ -1,7 +1,7 @@
 import React from 'react';
 import { IconContainerProps, Rating, RatingProps as MaterialRatingProps } from '@material-ui/lab'
 import { Box, Typography } from '@material-ui/core';
-import { attachField, IFieldProps } from 'react-forms'
+import { IFieldProps } from 'react-forms'
 import { FormikValues } from 'formik';
 import _ from 'lodash';
 
@@ -50,4 +50,3 @@ export const MUIRating: React.FC<RatingProps> = (props: RatingProps) => {
 	</Box> </>
 }
 
-attachField('rating', <MUIRating />)
