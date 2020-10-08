@@ -23,6 +23,12 @@ To use the basic component add the following to your react-forms config:
 }
 ```
 
+and add this import statement to the same file:
+
+``` 
+import 'rf-ratings'
+```
+
 The component runs on top of the [Rating](https://material-ui.com/components/rating/#rating) component from material-ui/lab and the fieldProps can take the following properties:
 
 ``` 
@@ -35,4 +41,5 @@ The component runs on top of the [Rating](https://material-ui.com/components/rat
 	containerProps?: BoxProps
 }
 ```
+
 ratingProps are passed to the native rating component and header is displayed like a label by default. icons will specify the icons to be used for rating. If you intend to use more or less than 5 icons, you will also have to specify the max property. If you intend to use only 1 icon for all the ratings, then icons can be set to an array with a single item. 
