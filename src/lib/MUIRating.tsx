@@ -1,14 +1,17 @@
-import React from 'react';
+import React, { ElementType } from 'react';
 import { IconContainerProps, Rating, RatingProps as MaterialRatingProps } from '@material-ui/lab'
-import { Box, Typography } from '@material-ui/core';
+import { Box, BoxProps, Typography, TypographyProps } from '@material-ui/core';
 import { IFieldProps } from 'react-forms'
 import { FormikValues } from 'formik';
 import _ from 'lodash';
 
-export interface MUIRatingProps extends MaterialRatingProps {
+export interface MUIRatingProps {
+	ratingProps: MaterialRatingProps,
 	icons?: JSX.Element[]
 	labels?: string[]
-	description?: string
+	header?: string
+	headerProps?: TypographyProps
+	containerProps?: BoxProps
 }
 
 export interface RatingProps extends IFieldProps {
@@ -17,9 +20,10 @@ export interface RatingProps extends IFieldProps {
 
 export const MUIRating: React.FC<RatingProps> = (props: RatingProps) => {
 	const { fieldProps = {} as MUIRatingProps, formikProps = {} as FormikValues } = props
-	const { icons, defaultValue, labels, description = '', } = fieldProps
+	const { icons, labels, header = '', ratingProps, headerProps, containerProps } = fieldProps
 	const getIconContainer = (IconProps: IconContainerProps) => {
 		const { value, ...others } = IconProps
+		console.log("icons returned")
 		if (icons && value < icons.length)
 			return <span {...others} >{icons[value]}</span>
 		if (icons && icons.length)
@@ -39,14 +43,21 @@ export const MUIRating: React.FC<RatingProps> = (props: RatingProps) => {
 	}
 	const config = {
 		IconContainerComponent: icons ? getIconContainer : undefined,
-		defaultValue,
 		getLabelText: labels ? getLabelText : undefined,
 		onChange: handleChange,
-		...props
+		...ratingProps,
 	}
-	return <><Box component="fieldset" mb={3} borderColor="transparent">
-		<Typography component="legend">{description}</Typography>
-		<Rating {...config} />
-	</Box> </>
+	const containerConfig = {
+		component: 'div' as ElementType,
+		display: 'flex',
+		justifyContent: 'center',
+		alignItems: 'center',
+		...containerProps
+	}
+	return <>
+		<Box {...containerConfig}>
+			<Typography {...headerProps} >{header}</Typography>
+			<><Rating {...config} /></>
+		</Box>
+	</>
 }
-

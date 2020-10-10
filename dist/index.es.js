@@ -44,9 +44,10 @@ function __rest(s, e) {
 
 var MUIRating = function (props) {
     var _a = props.fieldProps, fieldProps = _a === void 0 ? {} : _a, _b = props.formikProps, formikProps = _b === void 0 ? {} : _b;
-    var icons = fieldProps.icons, defaultValue = fieldProps.defaultValue, labels = fieldProps.labels, _c = fieldProps.description, description = _c === void 0 ? '' : _c;
+    var icons = fieldProps.icons, labels = fieldProps.labels, _c = fieldProps.header, header = _c === void 0 ? '' : _c, ratingProps = fieldProps.ratingProps, headerProps = fieldProps.headerProps, containerProps = fieldProps.containerProps;
     var getIconContainer = function (IconProps) {
         var value = IconProps.value, others = __rest(IconProps, ["value"]);
+        console.log("icons returned");
         if (icons && value < icons.length)
             return React.createElement("span", __assign({}, others), icons[value]);
         if (icons && icons.length)
@@ -64,12 +65,13 @@ var MUIRating = function (props) {
             return labels[0];
         return "";
     };
-    var config = __assign({ IconContainerComponent: icons ? getIconContainer : undefined, defaultValue: defaultValue, getLabelText: labels ? getLabelText : undefined, onChange: handleChange }, props);
+    var config = __assign({ IconContainerComponent: icons ? getIconContainer : undefined, getLabelText: labels ? getLabelText : undefined, onChange: handleChange }, ratingProps);
+    var containerConfig = __assign({ component: 'div', display: 'flex', justifyContent: 'center', alignItems: 'center' }, containerProps);
     return React.createElement(React.Fragment, null,
-        React.createElement(Box, { component: "fieldset", mb: 3, borderColor: "transparent" },
-            React.createElement(Typography, { component: "legend" }, description),
-            React.createElement(Rating, __assign({}, config))),
-        " ");
+        React.createElement(Box, __assign({}, containerConfig),
+            React.createElement(Typography, __assign({}, headerProps), header),
+            React.createElement(React.Fragment, null,
+                React.createElement(Rating, __assign({}, config)))));
 };
 
 attachField('rating', React.createElement(MUIRating, null));
