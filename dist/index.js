@@ -8,7 +8,6 @@ var React = _interopDefault(require('react'));
 var reactForms = require('react-forms');
 var lab = require('@material-ui/lab');
 var core = require('@material-ui/core');
-var _ = _interopDefault(require('lodash'));
 
 /*! *****************************************************************************
 Copyright (c) Microsoft Corporation.
@@ -49,11 +48,11 @@ function __rest(s, e) {
 }
 
 var MUIRating = function (props) {
-    var _a = props.fieldProps, fieldProps = _a === void 0 ? {} : _a, _b = props.formikProps, formikProps = _b === void 0 ? {} : _b;
+    var _a = props.fieldProps, fieldProps = _a === void 0 ? {} : _a, _b = props.formikProps, formikProps = _b === void 0 ? {} : _b, fieldConfig = props.fieldConfig;
     var icons = fieldProps.icons, labels = fieldProps.labels, _c = fieldProps.header, header = _c === void 0 ? '' : _c, ratingProps = fieldProps.ratingProps, headerProps = fieldProps.headerProps, containerProps = fieldProps.containerProps;
+    var valuekey = (fieldConfig === null || fieldConfig === void 0 ? void 0 : fieldConfig.valueKey) || '';
     var getIconContainer = function (IconProps) {
         var value = IconProps.value, others = __rest(IconProps, ["value"]);
-        console.log("icons returned");
         if (icons && value < icons.length)
             return React.createElement("span", __assign({}, others), icons[value]);
         if (icons && icons.length)
@@ -62,7 +61,7 @@ var MUIRating = function (props) {
     };
     //@ts-ignore
     var handleChange = function (event, value) {
-        formikProps.setFieldValue(_.get(fieldProps, 'name'), value);
+        formikProps.setFieldValue(valuekey, value);
     };
     var getLabelText = function (value) {
         if (labels && value < labels.length)
@@ -73,11 +72,14 @@ var MUIRating = function (props) {
     };
     var config = __assign({ IconContainerComponent: icons ? getIconContainer : undefined, getLabelText: labels ? getLabelText : undefined, onChange: handleChange }, ratingProps);
     var containerConfig = __assign({ component: 'div', display: 'flex', justifyContent: 'center', alignItems: 'center' }, containerProps);
+    var helperText = reactForms.getFieldError(valuekey, formikProps);
+    var error = !!helperText;
     return React.createElement(React.Fragment, null,
         React.createElement(core.Box, __assign({}, containerConfig),
             React.createElement(core.Typography, __assign({}, headerProps), header),
             React.createElement(React.Fragment, null,
-                React.createElement(lab.Rating, __assign({}, config)))));
+                React.createElement(lab.Rating, __assign({}, config))),
+            error ? React.createElement(core.Typography, { variant: 'caption', color: 'error' }, helperText) : null));
 };
 
 reactForms.attachField('rating', React.createElement(MUIRating, null));
