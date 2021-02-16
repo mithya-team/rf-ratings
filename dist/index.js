@@ -6,8 +6,8 @@ function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'defau
 
 var React = _interopDefault(require('react'));
 var reactForms = require('react-forms');
-var lab = require('@material-ui/lab');
 var core = require('@material-ui/core');
+var lab = require('@material-ui/lab');
 
 /*! *****************************************************************************
 Copyright (c) Microsoft Corporation.
@@ -77,9 +77,9 @@ var MUIRating = function (props) {
     return React.createElement(React.Fragment, null,
         React.createElement(core.Box, __assign({}, containerConfig),
             React.createElement(core.Typography, __assign({}, headerProps), header),
-            React.createElement(React.Fragment, null,
-                React.createElement(lab.Rating, __assign({}, config))),
-            error ? React.createElement(core.Typography, { variant: 'caption', color: 'error' }, helperText) : null));
+            React.createElement(core.Box, { display: 'flex', flexDirection: 'column', id: 'rating-wrapper' },
+                React.createElement(lab.Rating, __assign({}, config)),
+                error ? React.createElement(core.Typography, { variant: 'caption', color: 'error' }, helperText) : null)));
 };
 
 reactForms.attachField('rating', React.createElement(MUIRating, null));

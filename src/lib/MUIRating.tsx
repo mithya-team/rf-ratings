@@ -1,8 +1,8 @@
-import React, { ElementType } from 'react';
-import { IconContainerProps, Rating, RatingProps as MaterialRatingProps } from '@material-ui/lab'
 import { Box, BoxProps, Typography, TypographyProps } from '@material-ui/core';
-import { getFieldError, IFieldProps } from 'react-forms'
+import { IconContainerProps, Rating, RatingProps as MaterialRatingProps } from '@material-ui/lab';
 import { FormikValues } from 'formik';
+import React, { ElementType } from 'react';
+import { IFieldProps, getFieldError } from 'react-forms';
 
 export interface MUIRatingProps {
 	ratingProps: MaterialRatingProps,
@@ -58,8 +58,11 @@ export const MUIRating: React.FC<RatingProps> = (props: RatingProps) => {
 	return <>
 		<Box {...containerConfig}>
 			<Typography {...headerProps} >{header}</Typography>
-			<><Rating {...config} /></>
-			{error ? <Typography variant='caption' color='error'>{helperText}</Typography> : null}
+			<Box display='flex' flexDirection='column' id='rating-wrapper'>
+				<Rating {...config} />
+				{error ? <Typography variant='caption' color='error'>{helperText}</Typography> : null}
+			</Box>
 		</Box>
 	</>
 }
+

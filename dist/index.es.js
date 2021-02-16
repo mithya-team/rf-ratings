@@ -1,7 +1,7 @@
 import React from 'react';
 import { getFieldError, attachField } from 'react-forms';
-import { Rating } from '@material-ui/lab';
 import { Box, Typography } from '@material-ui/core';
+import { Rating } from '@material-ui/lab';
 
 /*! *****************************************************************************
 Copyright (c) Microsoft Corporation.
@@ -71,9 +71,9 @@ var MUIRating = function (props) {
     return React.createElement(React.Fragment, null,
         React.createElement(Box, __assign({}, containerConfig),
             React.createElement(Typography, __assign({}, headerProps), header),
-            React.createElement(React.Fragment, null,
-                React.createElement(Rating, __assign({}, config))),
-            error ? React.createElement(Typography, { variant: 'caption', color: 'error' }, helperText) : null));
+            React.createElement(Box, { display: 'flex', flexDirection: 'column', id: 'rating-wrapper' },
+                React.createElement(Rating, __assign({}, config)),
+                error ? React.createElement(Typography, { variant: 'caption', color: 'error' }, helperText) : null)));
 };
 
 attachField('rating', React.createElement(MUIRating, null));

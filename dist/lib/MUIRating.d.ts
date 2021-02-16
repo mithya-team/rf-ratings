@@ -1,6 +1,6 @@
-import React from 'react';
-import { RatingProps as MaterialRatingProps } from '@material-ui/lab';
 import { BoxProps, TypographyProps } from '@material-ui/core';
+import { RatingProps as MaterialRatingProps } from '@material-ui/lab';
+import React from 'react';
 import { IFieldProps } from 'react-forms';
 export interface MUIRatingProps {
     ratingProps: MaterialRatingProps;
