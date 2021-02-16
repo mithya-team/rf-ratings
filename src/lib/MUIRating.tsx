@@ -1,9 +1,8 @@
 import React, { ElementType } from 'react';
 import { IconContainerProps, Rating, RatingProps as MaterialRatingProps } from '@material-ui/lab'
 import { Box, BoxProps, Typography, TypographyProps } from '@material-ui/core';
-import { IFieldProps } from 'react-forms'
+import { getFieldError, IFieldProps } from 'react-forms'
 import { FormikValues } from 'formik';
-import _ from 'lodash';
 
 export interface MUIRatingProps {
 	ratingProps: MaterialRatingProps,
@@ -19,11 +18,11 @@ export interface RatingProps extends IFieldProps {
 }
 
 export const MUIRating: React.FC<RatingProps> = (props: RatingProps) => {
-	const { fieldProps = {} as MUIRatingProps, formikProps = {} as FormikValues } = props
+	const { fieldProps = {} as MUIRatingProps, formikProps = {} as FormikValues, fieldConfig } = props
 	const { icons, labels, header = '', ratingProps, headerProps, containerProps } = fieldProps
+	const valuekey = fieldConfig?.valueKey || '';
 	const getIconContainer = (IconProps: IconContainerProps) => {
 		const { value, ...others } = IconProps
-		console.log("icons returned")
 		if (icons && value < icons.length)
 			return <span {...others} >{icons[value]}</span>
 		if (icons && icons.length)
@@ -32,7 +31,7 @@ export const MUIRating: React.FC<RatingProps> = (props: RatingProps) => {
 	}
 	//@ts-ignore
 	const handleChange = (event: React.ChangeEvent<{}>, value: number | null) => {
-		formikProps.setFieldValue(_.get(fieldProps, 'name'), value)
+		formikProps.setFieldValue(valuekey, value)
 	}
 	const getLabelText = (value: number) => {
 		if (labels && value < labels.length)
@@ -54,10 +53,13 @@ export const MUIRating: React.FC<RatingProps> = (props: RatingProps) => {
 		alignItems: 'center',
 		...containerProps
 	}
+	const helperText = getFieldError(valuekey, formikProps);
+	const error = !!helperText;
 	return <>
 		<Box {...containerConfig}>
 			<Typography {...headerProps} >{header}</Typography>
 			<><Rating {...config} /></>
+			{error ? <Typography variant='caption' color='error'>{helperText}</Typography> : null}
 		</Box>
 	</>
 }
